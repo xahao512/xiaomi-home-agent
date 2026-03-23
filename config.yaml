@@ -1,0 +1,115 @@
+# ============================================================
+# Xiaomi Home Agent - 配置文件模板
+# 复制此文件到 ~/.qclaw/skills/xiaomi-home-config.yaml
+# ============================================================
+
+# ---------- 认证信息 ----------
+# 请前往 https://iot.mi.com/ 注册并获取
+xiaomi:
+  app_key: "YOUR_APP_KEY_HERE"
+  app_secret: "YOUR_APP_SECRET_HERE"
+  access_token: "YOUR_ACCESS_TOKEN_HERE"
+  refresh_token: "YOUR_REFRESH_TOKEN_HERE"
+  user_id: "YOUR_USER_ID_HERE"
+  token_type: "Bearer"
+
+# ---------- 云端模式 ----------
+cloud:
+  # REST API 端点
+  api_base: "https://api.io.mi.com/app"
+  # 备用 API（国内）
+  api_base_cn: "https://api.io.mi.com/app"
+  
+  # MQTT Broker 配置
+  mqtt:
+    host: "ssl://mqtt.mi.com"
+    port: 8883
+    keepalive: 60
+    qos: 1
+    
+  # 备用 MQTT Broker
+  mqtt_backup:
+    host: "ssl://mqtt.at.io.mi.com"
+    port: 443
+
+  # 请求配置
+  request:
+    timeout: 15
+    retry_count: 3
+    retry_delay: 2
+
+# ---------- 本地局域网模式 ----------
+local:
+  enabled: true
+  
+  # 本地绑定地址（通常无需修改）
+  bind_ip: "0.0.0.0"
+  bind_port: 54321
+  
+  # 设备发现
+  discovery:
+    timeout: 10       # 发现超时(秒)
+    broadcast: "255.255.255.255"  # 广播地址
+    port: 54321       # 设备监听端口
+    
+  # 本地认证（部分设备需要）
+  # 可通过 python scripts/auth.py local 获取
+  local_key: "YOUR_LOCAL_KEY_HERE"
+
+# ---------- 默认控制参数 ----------
+defaults:
+  # 设备默认值
+  light:
+    brightness: 80
+    color_temp: 4000
+    
+  air_conditioner:
+    temperature: 26
+    mode: "cool"
+    
+  # 命令执行超时(秒)
+  command_timeout: 10
+
+# ---------- 设备别名 ----------
+# 方便通过自然语言控制
+device_aliases:
+  # 格式: 别名: did
+  living_room_light: "123456789"
+  bedroom_light: "234567890"
+  living_room_ac: "345678901"
+  bedroom_ac: "456789012"
+  entrance_light: "567890123"
+  desk_lamp: "678901234"
+  smart_plug_1: "789012345"
+  robot_vacuum: "890123456"
+  living_room_fan: "901234567"
+
+# ---------- MIoT 模型白名单 ----------
+# 只控制以下模型，未列出的设备将被跳过
+# 如需控制所有设备，设为空列表或删除此配置
+allowed_models: []
+  # - "xiaomi.lamp.celing"
+  # - "xiaomi.aircondition.mt3"
+  # - "xiaomi.plug.mitw01"
+
+# ---------- 日志配置 ----------
+logging:
+  level: "INFO"         # DEBUG / INFO / WARNING / ERROR
+  file: "~/.qclaw/logs/xiaomi_home.log"
+  max_size_mb: 10
+  backup_count: 3
+  console: true
+
+# ---------- 高级选项 ----------
+advanced:
+  # MQTT 重连间隔(秒)
+  mqtt_reconnect_interval: 30
+  
+  # 属性订阅刷新间隔(秒)
+  property_poll_interval: 60
+  
+  # 是否启用本地降级（云端故障时自动切本地）
+  fallback_to_local: true
+  
+  # HTTP 请求签名
+  signed_cookie_enabled: true

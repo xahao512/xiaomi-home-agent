@@ -1,0 +1,278 @@
+{
+  "device_types": {
+    "light": {
+      "name": "灯具",
+      "icon": "💡",
+      "services": {
+        "switch": {
+          "name": "开关",
+          "property": "power",
+          "values": {
+            "on": true,
+            "off": false
+          }
+        },
+        "brightness": {
+          "name": "亮度",
+          "property": "brightness",
+          "range": [0, 100]
+        },
+        "color_temp": {
+          "name": "色温",
+          "property": "color_temperature",
+          "range": [2700, 6500]
+        },
+        "color": {
+          "name": "颜色",
+          "property": "rgb",
+          "format": "RGB"
+        }
+      },
+      "actions": ["turn_on", "turn_off", "set_brightness", "set_color_temp", "set_color"]
+    },
+    "switch": {
+      "name": "开关插座",
+      "icon": "🔌",
+      "services": {
+        "switch": {
+          "name": "开关",
+          "property": "switch_status",
+          "values": {
+            "on": "on",
+            "off": "off"
+          }
+        },
+        "power_consumption": {
+          "name": "功耗",
+          "property": "power_consumption",
+          "unit": "W"
+        }
+      },
+      "actions": ["turn_on", "turn_off"]
+    },
+    "aircondition": {
+      "name": "空调",
+      "icon": "❄️",
+      "services": {
+        "power": {
+          "name": "电源",
+          "property": "power"
+        },
+        "temperature": {
+          "name": "温度",
+          "property": "target_temperature",
+          "range": [16, 30]
+        },
+        "mode": {
+          "name": "模式",
+          "property": "mode",
+          "values": {
+            "auto": 0,
+            "cool": 1,
+            "heat": 2,
+            "fan": 3,
+            "dry": 4
+          }
+        },
+        "fan_speed": {
+          "name": "风速",
+          "property": "fan_level",
+          "values": {
+            "auto": 0,
+            "low": 1,
+            "medium": 2,
+            "high": 3
+          }
+        }
+      },
+      "actions": ["turn_on", "turn_off", "set_temperature", "set_mode", "set_fan_speed"]
+    },
+    "humidifier": {
+      "name": "加湿器",
+      "icon": "💨",
+      "services": {
+        "power": {
+          "name": "电源",
+          "property": "power"
+        },
+        "humidity": {
+          "name": "湿度",
+          "property": "relative_humidity"
+        },
+        "mode": {
+          "name": "模式",
+          "property": "mode"
+        },
+        "water_level": {
+          "name": "水位",
+          "property": "water_level"
+        }
+      },
+      "actions": ["turn_on", "turn_off", "set_humidity", "set_mode"]
+    },
+    "fan": {
+      "name": "风扇",
+      "icon": "🌀",
+      "services": {
+        "power": {
+          "name": "电源",
+          "property": "power"
+        },
+        "speed": {
+          "name": "风速",
+          "property": "fan_speed",
+          "range": [0, 100]
+        },
+        "swing": {
+          "name": "摆风",
+          "property": "swing"
+        },
+        "direction": {
+          "name": "风向",
+          "property": "horizontal_swing"
+        }
+      },
+      "actions": ["turn_on", "turn_off", "set_speed", "swing_on", "swing_off"]
+    },
+    "purifier": {
+      "name": "空气净化器",
+      "icon": "🌿",
+      "services": {
+        "power": {
+          "name": "电源",
+          "property": "power"
+        },
+        "pm25": {
+          "name": "PM2.5",
+          "property": "pm25",
+          "unit": "μg/m³"
+        },
+        "mode": {
+          "name": "模式",
+          "property": "mode"
+        },
+        "filter_life": {
+          "name": "滤芯寿命",
+          "property": "filter_life"
+        }
+      },
+      "actions": ["turn_on", "turn_off", "set_mode", "reset_filter"]
+    },
+    "vacuum": {
+      "name": "扫地机器人",
+      "icon": "🤖",
+      "services": {
+        "status": {
+          "name": "状态",
+          "property": "status"
+        },
+        "battery": {
+          "name": "电量",
+          "property": "battery_level"
+        },
+        "mode": {
+          "name": "模式",
+          "property": "vacuum_mode"
+        }
+      },
+      "actions": ["start", "pause", "stop", "dock", "set_mode", "clean_zone"]
+    },
+    "lock": {
+      "name": "智能门锁",
+      "icon": "🔒",
+      "services": {
+        "status": {
+          "name": "状态",
+          "property": "status"
+        },
+        "battery": {
+          "name": "电量",
+          "property": "battery_level"
+        },
+        "log": {
+          "name": "开锁记录",
+          "property": "unlock_log"
+        }
+      },
+      "actions": ["lock", "unlock", "get_log"],
+      "warning": "涉及安全，建议用户通过APP确认操作"
+    },
+    "curtain": {
+      "name": "窗帘电机",
+      "icon": "🪟",
+      "services": {
+        "status": {
+          "name": "状态",
+          "property": "motor_status"
+        },
+        "position": {
+          "name": "位置",
+          "property": "current_position",
+          "range": [0, 100]
+        }
+      },
+      "actions": ["open", "close", "stop", "set_position"],
+      "warning": "涉及机械操作，建议用户确认"
+    },
+    "camera": {
+      "name": "摄像头",
+      "icon": "📷",
+      "services": {
+        "power": {
+          "name": "电源",
+          "property": "power"
+        },
+        "night_mode": {
+          "name": "夜视模式",
+          "property": "night_mode"
+        },
+        "motion_detection": {
+          "name": "移动侦测",
+          "property": "motion_detect"
+        }
+      },
+      "actions": ["turn_on", "turn_off", "enable_motion", "disable_motion", "snapshot"]
+    },
+    "speaker": {
+      "name": "音箱",
+      "icon": "🔊",
+      "services": {
+        "play": {
+          "name": "播放",
+          "property": "playing"
+        },
+        "volume": {
+          "name": "音量",
+          "property": "volume",
+          "range": [0, 100]
+        },
+        "content": {
+          "name": "播放内容",
+          "property": "current_content"
+        }
+      },
+      "actions": ["play", "pause", "next", "previous", "set_volume", "play_text"]
+    }
+  },
+  "common_properties": {
+    "power": {
+      "type": "boolean",
+      "description": "电源状态"
+    },
+    "brightness": {
+      "type": "integer",
+      "range": [0, 100],
+      "description": "亮度百分比"
+    },
+    "temperature": {
+      "type": "integer",
+      "range": [-40, 120],
+      "description": "温度值"
+    },
+    "humidity": {
+      "type": "integer",
+      "range": [0, 100],
+      "description": "湿度百分比"
+    }
+  }
+}
