@@ -1,0 +1,26 @@
+# Xiaomi Home Agent 配置文件
+# 请根据您的实际情况修改
+
+# 小米账号配置
+xiaomi:
+  region: cn  # 区域: cn(中国), de(欧洲), us(美国), sg(新加坡), in(印度), ru(俄罗斯)
+
+# 控制模式
+# cloud: 云端控制，通过小米云 API
+# local: 本地控制，需要中枢网关
+# auto: 自动选择，优先本地，失败后使用云端
+control_mode: cloud
+
+# 本地模式配置（仅当 control_mode 为 local 或 auto 时有效）
+local:
+  gateway_ip: auto  # auto 表示自动发现，也可手动指定如 192.168.1.100
+  
+# MQTT 配置（用于本地控制和实时状态推送）
+mqtt:
+  keepalive: 60          # 心跳间隔(秒)
+  reconnect_interval: 5  # 重连间隔(秒)
+  
+# 日志配置
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  file: logs/xiaomi_home.log

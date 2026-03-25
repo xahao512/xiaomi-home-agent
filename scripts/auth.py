@@ -49,12 +49,6 @@ class XiaomiAuth:
         with open(self.auth_file, 'w', encoding='utf-8') as f:
             json.dump(auth_data, f, indent=2, ensure_ascii=False)
     
-    def _get_sign(self, data, key=''):
-        """生成签名"""
-        params = sorted(data.items())
-        sign_str = '&'.join([f"{k}={v}" for k, v in params]) + key
-        return hashlib.md5(sign_str.encode()).hexdigest().upper()
-    
     def login_with_credentials(self, username, password):
         """使用用户名密码登录"""
         print(f"🔐 正在登录: {username}")
